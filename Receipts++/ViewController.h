@@ -1,15 +1,20 @@
-//
-//  ViewController.h
-//  Receipts++
-//
-//  Created by Mar Koss on 2017-10-26.
-//  Copyright © 2017 Mar Koss. All rights reserved.
-//
+
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "Receipt+CoreDataClass.h"
+#import "DetailViewController.h"
+#import "Tag+CoreDataClass.h"
 
-@interface ViewController : UIViewController
+@class AddReceiptViewController;
 
+@interface ViewController : UIViewController <NSFetchedResultsControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property AddReceiptViewController *detailViewController;
+
+@property (strong, nonatomic) NSFetchedResultsController<Receipt *> *fetchedResultsController;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 

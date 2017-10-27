@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "AddReceiptViewController.h"
+#import "ViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UINavigationControllerDelegate>
 
 @end
 
@@ -17,6 +19,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    navigationController.delegate = self;
+    ViewController *controller = (ViewController *)navigationController.topViewController;
+    controller.managedObjectContext = self.persistentContainer.viewContext;
+    
+//    ViewController *controller = (ViewController *)self.window.rootViewController;
+//    controller.managedObjectContext = self.persistentContainer.viewContext;
+//
     return YES;
 }
 
@@ -72,6 +82,7 @@
                      * The store could not be migrated to the current model version.
                      Check the error message to determine what the actual problem was.
                     */
+
                     NSLog(@"Unresolved error %@, %@", error, error.userInfo);
                     abort();
                 }
